@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/whisper.iml" filepath="$PROJECT_DIR$/.idea/modules/whisper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/whisper_main.iml" filepath="$PROJECT_DIR$/.idea/modules/whisper_main.iml" group="whisper" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/whisper_test.iml" filepath="$PROJECT_DIR$/.idea/modules/whisper_test.iml" group="whisper" />
+    </modules>
+  </component>
+</project>

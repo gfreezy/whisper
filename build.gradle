@@ -1,0 +1,126 @@
+group 'com.allsunday'
+version '1.0-SNAPSHOT'
+
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+buildscript {
+    ext.kotlin_version = '1.0.6'
+    ext.quasar_version = '0.7.7'
+    repositories {
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+configurations {
+    quasar
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+}
+
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+repositories {
+//    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile "co.paralleluniverse:quasar-core:$quasar_version:jdk8"
+    compile "co.paralleluniverse:quasar-kotlin:$quasar_version"
+    compile "co.paralleluniverse:quasar-actors:$quasar_version"
+    compile "org.slf4j:slf4j-api:1.7.23"
+    compile "org.slf4j:jcl-over-slf4j:1.7.23"
+    compile "org.slf4j:log4j-over-slf4j:1.7.23"
+    compile "ch.qos.logback:logback-classic:1.2.1"
+
+    compile "com.github.puniverse:quasar:-SNAPSHOT"
+
+    quasar "co.paralleluniverse:quasar-core:$quasar_version:jdk8@jar"
+}
+
+mainClassName = "Server"
+
+jar {
+    manifest {
+        attributes('Implementation-Title': 'Gradle',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-JDK': System.getProperty('java.version'),
+                'Source-Compatibility': sourceCompatibility,
+                'Target-Compatibility': targetCompatibility,
+                'Main-Class': mainClassName
+        )
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+tasks.withType(Test) {
+    jvmArgs "-javaagent:${configurations.quasar.singleFile} -Dco.paralleluniverse.fibers.verifyInstrumentation"
+}
+
+applicationDefaultJvmArgs = [
+        "-javaagent:${configurations.quasar.singleFile}",
+        "-Dco.paralleluniverse.fibers.verifyInstrumentation=true",
+        "-Dco.paralleluniverse.fibers.detectRunawayFibers=false"
+]
+
+
+task createAllStartScripts() << {
+}
+
+
+//compileKotlin {
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+//
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//        apiVersion = "1.0"
+//        languageVersion = "1.0"
+//    }
+//}
+
+
+def scripts = [
+        'server': 'Server',
+        'client': 'Client'
+]
+
+scripts.each() { scriptName, className ->
+    def t = tasks.create(name: scriptName + 'StartScript', type: CreateStartScripts) {
+        mainClassName = className
+        applicationName = scriptName
+        defaultJvmOpts = [
+                "-javaagent:${configurations.quasar.singleFile}",
+//                "-Dco.paralleluniverse.fibers.verifyInstrumentation=true",
+                "-Dco.paralleluniverse.fibers.detectRunawayFibers=false"
+        ]
+
+        outputDir = new File(project.buildDir, 'scripts')
+        classpath = jar.outputs.files + project.configurations.runtime
+    }
+
+    applicationDistribution.into("bin") {
+        from(t)
+        fileMode = 0755
+    }
+    createAllStartScripts.dependsOn(t)
+}
