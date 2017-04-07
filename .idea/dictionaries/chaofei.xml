@@ -2,6 +2,10 @@
   <dictionary name="chaofei">
     <words>
       <w>addr</w>
+      <w>coroutine</w>
+      <w>coroutines</w>
+      <w>deregister</w>
+      <w>recv</w>
     </words>
   </dictionary>
 </component>

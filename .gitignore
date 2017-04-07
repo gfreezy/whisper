@@ -61,7 +61,7 @@ fabric.properties
 *.class
 
 # Log file
-*.log
+*.com.allsunday.whisper.server.log
 
 # BlueJ files
 *.ctxt
