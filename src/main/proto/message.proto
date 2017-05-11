@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package board;
+
+option java_multiple_files = true;
+option java_package = "com.allsunday.whisper.proto";
+
+import "google/protobuf/any.proto";
+
+message Message {
+    google.protobuf.Any data = 1;
+}
+
+message Login {
+    uint64 visitorId = 1;
+}
+
+
+message Logoff {
+    uint64 visitorId = 1;
+}
+
+message TalkToPeer {
+    uint64 visitorId = 1;
+    uint64 peerId = 2;
+    string message = 3;
+}
+
+message Ack {
+    bool success = 1;
+}
+
+message TalkToPeerNotification {
+    uint64 fromId = 1;
+    uint64 toId = 2;
+    string message = 3;
+}
+
+message LoginNotification {
+    uint64 userId = 1;
+}
+
+message LogoffNotification {
+    uint64 userId = 1;
+}

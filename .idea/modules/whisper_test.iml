@@ -2,53 +2,27 @@
 <module external.linked.project.id="whisper:test" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="com.allsunday" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="1">
-        <option name="compilerInfo">
-          <KotlinCompilerInfo>
-            <option name="compilerSettings">
-              <CompilerSettings />
-            </option>
-            <option name="k2jsCompilerArguments">
-              <K2JSCompilerArguments>
-                <option name="moduleKind" value="plain" />
-              </K2JSCompilerArguments>
-            </option>
-            <option name="k2jvmCompilerArguments">
-              <K2JVMCompilerArguments>
-                <option name="noStdlib" value="true" />
-                <option name="noReflect" value="true" />
-                <option name="moduleName" value="whisper_main" />
-                <option name="jvmTarget" value="1.8" />
-                <option name="addCompilerBuiltIns" value="true" />
-                <option name="loadBuiltInsFromDependencies" value="true" />
-                <option name="languageVersion" value="1.1" />
-                <option name="apiVersion" value="1.1" />
-                <option name="coroutinesEnable" value="true" />
-              </K2JVMCompilerArguments>
-            </option>
-            <option name="_commonCompilerArguments">
-              <DummyImpl>
-                <option name="languageVersion" value="1.1" />
-                <option name="apiVersion" value="1.1" />
-                <option name="pluginClasspaths">
-                  <array />
-                </option>
-                <option name="coroutinesEnable" value="true" />
-                <option name="pluginOptions">
-                  <array />
-                </option>
-              </DummyImpl>
-            </option>
-          </KotlinCompilerInfo>
-        </option>
-        <option name="useProjectSettings" value="false" />
-        <option name="versionInfo">
-          <KotlinVersionInfo>
-            <option name="apiLevel" value="1.1" />
-            <option name="languageLevel" value="1.1" />
-            <option name="targetPlatformName" value="JVM 1.8" />
-          </KotlinVersionInfo>
-        </option>
+      <configuration version="2" platform="JVM 1.6" useProjectSettings="false">
+        <compilerSettings />
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../build/kotlin-classes/test" />
+          <option name="classpath" value="$MODULE_DIR$/../../build/classes/main:/Users/chaofei/Develop/whisper/build/resources/main:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jre8/1.1.2/cd6d8b7a32971564fab0846009593f3bfabdcac1/kotlin-stdlib-jre8-1.1.2.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.1.2/b8cc2f486359a56c0c1b1dd125141c19d8db1734/kotlin-reflect-1.1.2.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/0.12/9efd0b8cffb5d00c25bb6e4a1931f7a6c3015fb9/kotlinx-coroutines-core-0.12.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8/0.12/c44b0cd4ec326d3bda6e4beaa10b046f1fe2573b/kotlinx-coroutines-jdk8-0.12.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-nio/0.12/952e4dd3e8883826a39854a4eb311b3c325edf70/kotlinx-coroutines-nio-0.12.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-javafx/0.12/e97151ff5dd0b66a718e7a8b72e9d74f06c9402/kotlinx-coroutines-javafx-0.12.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/3.2.0/62ccf171a106ff6791507f2d5364c275f9a3131d/protobuf-java-3.2.0.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.23/432be7c915d6389efd927e32937a30f7d5556f3e/slf4j-api-1.7.23.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.23/50119f4f23d6badb1ada8af21b3c5285e63c19e9/jcl-over-slf4j-1.7.23.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.23/c1b7966db155665e560c1d0650ba8bd9f09d1125/log4j-over-slf4j-1.7.23.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.1/706a8b8206ead3683ec639dd270d11fd948fbb0e/logback-classic-1.2.1.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/com.github.salomonbrys.kotson/kotson/2.5.0/40daf22108aa4436d46257e14cc48447cca542c3/kotson-2.5.0.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/no.tornado/tornadofx/1.7.2/b41e2c0e5cf84176a62890b26c09701bf245ff66/tornadofx-1.7.2.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/junit/junit/4.4/8f35ee1f35d2dadbb5029991449ee90c1bab4d4a/junit-4.4.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jre7/1.1.2/8fe14858be2d85bb2c8ad1e060f6dafbd45f48f4/kotlin-stdlib-jre7-1.1.2.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.1.2/109c63008b2d569e38696a3178ee2493b0f6c776/kotlin-stdlib-1.1.2.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.2.1/378913dfc3c6c71e7e2a2853eff2c3e8ac27599/logback-core-1.2.1.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/Users/chaofei/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="whisper_main" />
+          <option name="jvmTarget" value="1.6" />
+          <option name="addCompilerBuiltIns" value="true" />
+          <option name="loadBuiltInsFromDependencies" value="true" />
+          <option name="languageVersion" value="1.1" />
+          <option name="apiVersion" value="1.1" />
+          <option name="pluginClasspaths">
+            <array />
+          </option>
+          <option name="coroutinesEnable" value="true" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+        </compilerArguments>
       </configuration>
     </facet>
   </component>
@@ -63,20 +37,25 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="whisper_main" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.1.2" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:0.12" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:0.12" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-nio:0.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-javafx:0.12" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.protobuf:protobuf-java:3.2.0" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.23" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.23" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.23" level="project" />
     <orderEntry type="library" name="Gradle: ch.qos.logback:logback-classic:1.2.1" level="project" />
     <orderEntry type="library" name="Gradle: com.github.salomonbrys.kotson:kotson:2.5.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: no.tornado:tornadofx:1.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.1.2" level="project" />
     <orderEntry type="library" name="Gradle: ch.qos.logback:logback-core:1.2.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish:javax.json:1.0.4" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="whisper_main" />

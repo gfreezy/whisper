@@ -6,12 +6,9 @@ import java.nio.ByteBuffer
 import java.nio.channels.AsynchronousSocketChannel
 
 
-class Packet(val streamId: Int, val data: kotlin.ByteArray)
-
-
 class PacketReaderWriter(val asynchronousSocketChannel: AsynchronousSocketChannel) {
-    private val writeBuf : ByteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 4)
-    private val readBuf : ByteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 4)
+    private val writeBuf: ByteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 4)
+    private val readBuf: ByteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 4)
 
     init {
         readBuf.flip()
@@ -36,7 +33,7 @@ class PacketReaderWriter(val asynchronousSocketChannel: AsynchronousSocketChanne
         readBuf.flip()
     }
 
-    private suspend fun remainingSize() : Int {
+    private suspend fun remainingSize(): Int {
         readBuf.remaining()
         return readBuf.limit() - readBuf.position()
     }
@@ -47,24 +44,24 @@ class PacketReaderWriter(val asynchronousSocketChannel: AsynchronousSocketChanne
         }
     }
 
-    suspend fun aReadPacket() : Packet {
+    suspend fun aReadPacket(): Packet {
         val size = aReadSize()
         val command = aReadCommand()
         val data = aReadData(size - 4)
         return Packet(command, data)
     }
 
-    private suspend fun aReadSize() : Int {
+    private suspend fun aReadSize(): Int {
         readNBytes(4)
         return readBuf.int
     }
 
-    private suspend fun aReadCommand() : Int {
+    private suspend fun aReadCommand(): Int {
         readNBytes(4)
         return readBuf.int
     }
 
-    private suspend fun aReadData(size: Int) : kotlin.ByteArray {
+    private suspend fun aReadData(size: Int): kotlin.ByteArray {
         readNBytes(size)
         val byteArray = ByteArray(size)
         readBuf.get(byteArray)

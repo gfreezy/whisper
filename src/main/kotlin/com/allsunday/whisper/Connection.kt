@@ -1,38 +1,50 @@
 package com.allsunday.whisper
 
-import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.Unconfined
 import kotlinx.coroutines.experimental.channels.Channel
 import kotlinx.coroutines.experimental.launch
 import java.nio.channels.AsynchronousSocketChannel
 import java.util.concurrent.ConcurrentHashMap
 
-typealias Handler = (ByteArray) -> ByteArray
-
-class Connection(asynchronousSocketChannel: AsynchronousSocketChannel, var streamId: Int, val handler: Handler) {
+open class Connection(asynchronousSocketChannel: AsynchronousSocketChannel, var initStreamId: Int, val handler: Handler) {
     val packetReaderWriter: PacketReaderWriter = PacketReaderWriter(asynchronousSocketChannel)
     val streams: ConcurrentHashMap<Int, Channel<Packet>> = ConcurrentHashMap()
     val outChannel: Channel<Packet> = Channel<Packet>()
+    var streamId: Int = initStreamId
 
-    fun newStream(): Stream {
-        streamId += 2
-        val channel = Channel<Packet>()
-        streams.put(streamId, channel)
-        return Stream(streamId, channel, outChannel)
+    init {
+        keepReceiving()
+        keepSending()
     }
 
-    suspend fun keepSending() = launch(CommonPool) {
+    fun newStream(): Stream {
+        if (streamId >= Int.MAX_VALUE - 10) {
+            streamId = initStreamId
+        }
+        streamId += 2
+
+        val channel = Channel<Packet>()
+        streams.put(streamId, channel)
+        return Stream(streamId, outChannel, channel)
+    }
+
+    private fun keepSending() = launch(Unconfined) {
         while (!outChannel.isClosedForReceive && isActive) {
             val packet = outChannel.receive()
             packetReaderWriter.aWritePacket(packet)
         }
     }
 
-    suspend fun keepReceiving() = launch(CommonPool) {
+    private fun keepReceiving() = launch(Unconfined) {
         while (isActive) {
             val packet = packetReaderWriter.aReadPacket()
             val stream = streams[packet.streamId]
             if (stream != null) {
-                stream.send(packet)
+                if (!stream.isClosedForSend) {
+                    stream.send(packet)
+                } else {
+                    streams.remove(packet.streamId)
+                }
             } else {
                 outChannel.send(Packet(packet.streamId, handler(packet.data)))
             }
